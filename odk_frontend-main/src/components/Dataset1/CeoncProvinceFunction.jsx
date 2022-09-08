@@ -68,7 +68,7 @@ const CeoncProvinceFunction = ({ graphWidth, data4, dataType4 }) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch(`${host}/palikaprovince`, requestOptions)
+      let res = await fetch(`${host}/palikaprovince/ceonc`, requestOptions)
       let data = await res.json()
       if (!dismount) {
         if (res.ok) {
