@@ -46,7 +46,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     const getRequest = async () => {
       let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
       let data = await res.json()
-
+      
       if (!dismount) {
         if (res.ok) {
           setBcQualityDomain(data)

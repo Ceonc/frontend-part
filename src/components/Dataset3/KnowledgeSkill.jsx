@@ -6,6 +6,7 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
+    Legend
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { host } from '../../utils';
@@ -43,7 +44,6 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
     const getRequest = async () => {
       let res = await fetch(`${host}/hf/knowledge`, requestOptions)
       let data = await res.json()
-
       if (!dismount) {
         if (res.ok) {
           setHfImplement(data)
@@ -71,7 +71,6 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
 
         let res = await fetch(`${host}/hf/filter/knowledge`, requestOptionsBody)
         let data = await res.json()
-
         if (!dismount) {
           if (res.ok) {
             setDataSort(data)
@@ -179,20 +178,30 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                   data={items["data"]}
                 >
                   <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="name"/>
+                  <XAxis dataKey="Name"/>
                   <YAxis/>
                   <Tooltip content={({active, payload, label}) => {
                     if (active && payload && payload.length) {
+                        console.log(payload, 'Payload');
+                        console.log(active, 'active');
+                        console.log(label, 'label');
                       return (
                         <div className="custom-tooltip">
-                          <p className="label">{`${label}`}</p>
-                          <p className="label" style={{color: color.color_4, marginTop: 10}}>value: {`${payload[0].value}`} %</p>
+                          <p className="label">{`${payload[0].payload.Name}`}</p>
+                          <p className="label" style={{color: color.color_1, marginTop: 10}} > &gt;25%: {`${payload[0].payload.Q1}`}</p>
+                          <p className="label" style={{color: color.color_2, marginTop: 10}}>25%-50%: {`${payload[0].payload.Q2}`}</p>
+                          <p className="label" style={{color: color.color_3, marginTop: 10}}>50%-75%: {`${payload[0].payload.Q3}`}</p>
+                          <p className="label" style={{color: color.color_4, marginTop: 10}}>75%-100%: {`${payload[0].payload.Q4}`}</p>
                         </div>
                       )
                     }
                     return null
                   }}/>
-                  <Bar dataKey="value" fill={color.color_4} />
+                  {/* <Bar dataKey="value" fill={color.color_4} /> */}
+                  <Bar dataKey="Q1" stackId="a" fill={color.color_1} />
+                  <Bar dataKey="Q2" stackId="a" fill={color.color_2} />
+                  <Bar dataKey="Q3" stackId="a" fill={color.color_3} />
+                  <Bar dataKey="Q4" stackId="a" fill={color.color_4} />
                 </BarChart>
               </div>
             )

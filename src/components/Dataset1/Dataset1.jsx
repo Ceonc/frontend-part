@@ -205,19 +205,19 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                 </div>
             ):null
           }
-          <div className="graphItemContainer">
+{/*          <div className="graphItemContainer">
               <BcSignalFunction graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
           </div>
-          {location === "nav"
+*/}          {location === "nav"
             ? (
                 <div className="graphItemContainer">
                     <CeoncQualityDomain graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
                 </div>
             ):null
           }
-          <div className="graphItemContainer">
+{/*          <div className="graphItemContainer">
               <CeoncSignalFunction graphWidth={graphWidth} data4={data || dataNew} dataType4={dataType || dataTypeNew}/>
-          </div>
+          </div>*/}
          
         </div>
     </div>
